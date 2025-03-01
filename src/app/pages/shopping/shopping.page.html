@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list [inset]="true">
+    @for (cart of carts; track $index) {
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src="{{ cart.image }}" alt="{{ cart.title }}">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ cart.title }}</h2>
+          <p>{{ cart.price }}</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
