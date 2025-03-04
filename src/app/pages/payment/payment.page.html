@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  @if(data !== null) {
+    <div class="content">
+      <h1>Información personal</h1>
+      <div class="row">
+        <ion-label>
+          Nombre
+          <p>{{ data.name }}</p>
+        </ion-label>
+        <ion-label>
+          Apellido
+          <p>{{ data.lastName }}</p>
+        </ion-label>
+      </div>
+    
+      <div class="row">
+        <ion-label>
+          Pais
+          <p>{{ data.country }}</p>
+        </ion-label>
+        <ion-label>
+          Ciudad
+          <p>{{ data.city }}</p>
+        </ion-label>
+      </div>
+    
+      <ion-label>
+        Ubicación
+        <p>{{ data.address }}</p>
+      </ion-label>
+    
+      <h1>Información de pago</h1>
+      <h4>{{ data.bankNumber }}</h4>
+      <h3>Total</h3>
+      <h1>{{ data.total|currency }}</h1>
+    </div>  
+  } @else {
+    <h1>Pagina invalida!</h1>
+  }
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button
+      id="open-modal"
+      expand="full"
+      color="tertiary"
+      (click)="goToHome()"
+    >Volver a principal</ion-button>
+  </ion-toolbar>
+</ion-footer>

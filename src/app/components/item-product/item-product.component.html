@@ -1,0 +1,25 @@
+<ion-item>
+  <ion-thumbnail slot="start">
+    <img src="{{ image }}" alt="{{ title }}">
+  </ion-thumbnail>
+  <ion-label>
+    <div class="row">
+      <h2>{{ title }}</h2>
+      <p>{{ price|currency }}</p>
+    </div>
+
+    <p>qty: {{ quantity }}</p>
+  </ion-label>
+
+  <div>
+    <ion-button (click)="aditionProduct()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="substractProduct()">
+      <ion-icon name="remove-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="danger" id="{{ productId }}">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </div>
+</ion-item>

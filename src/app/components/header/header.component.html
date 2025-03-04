@@ -1,0 +1,15 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" [routerLink]="['/home']" class="back">
+      <ng-content select="[back]" size="large"></ng-content>
+      <img src="../../../assets/icon/favicon.png" alt="Pear Store" width="100" height="100">
+    </ion-buttons>
+    <ion-title>Pear Store</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/shopping">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge color="danger">{{ cardLength }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

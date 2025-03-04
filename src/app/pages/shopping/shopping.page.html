@@ -1,0 +1,131 @@
+<app-header>
+  <ion-icon name="chevron-back-outline" [routerLink]="['/home']" back></ion-icon>
+</app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list [inset]="false">
+    @for (cart of carts; track $index) {
+      <app-item-product
+        [productId]="cart.id"
+        [image]="cart.image"
+        [title]="cart.title"
+        [price]="cart.price"
+        [quantity]="cart.quantity"
+        (messageEvent)="calculateTotal($event)"
+      />
+
+      <ion-alert
+        trigger="{{cart.id}}"
+        header="Seguro quieres eliminar el producto?"
+        [buttons]="alertButtons(cart.id)"
+      ></ion-alert>
+    }
+  </ion-list>
+
+  <ion-modal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button [strong]="true" (click)="confirm()">Confirmar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h3>Información personal</h3>
+        <ion-item>
+          <ion-input
+            [(ngModel)]="data.name"
+            label="Nombre"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Nombre"
+          ></ion-input>
+          <ion-input
+            [(ngModel)]="data.lastName"
+            label="Apellido"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Apellido"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            [(ngModel)]="data.country"
+            label="Pais"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Pais"
+          ></ion-input>
+          <ion-input
+            [(ngModel)]="data.city"
+            label="Ciudad"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Ciudad"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            [(ngModel)]="data.address"
+            label="Ubicación"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Ubicación"
+          ></ion-input>
+        </ion-item>
+
+        <br>
+        <h3>Información de pago</h3>
+        <ion-item>
+          <ion-input
+            [(ngModel)]="data.bankNumber"
+            label="Numero cuenta de banco"
+            labelPlacement="stacked"
+            type="number"
+            placeholder="Numero de cuenta de banco"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            [(ngModel)]="data.cvc"
+            label="CVC"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="CVC"
+          ></ion-input>
+          <ion-input
+            [(ngModel)]="data.expiration"
+            label="Fecha de expiración"
+            labelPlacement="stacked"
+            type="text"
+            placeholder="Fecha"
+          ></ion-input>
+          <div>
+            <ion-label>
+              Total
+              <p>{{ total|currency }}</p>
+            </ion-label>
+          </div>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-label>
+      <h1>Total: </h1>
+      <p>{{ total|currency }}</p>
+    </ion-label>
+    <ion-button
+      id="open-modal"
+      expand="full"
+      color="tertiary"
+    >Realizar pago</ion-button>
+  </ion-toolbar>
+</ion-footer>

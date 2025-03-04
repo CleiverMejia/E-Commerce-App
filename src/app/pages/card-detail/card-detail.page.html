@@ -1,0 +1,42 @@
+<app-header>
+  <ion-icon name="chevron-back-outline" [routerLink]="['/home']" back></ion-icon>
+</app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="card" *ngIf="product">
+    <div class="details-container">
+      <h2 class="details-title">{{ product.title }}</h2>
+
+      <img class="details-image" src="{{ product.image }}" alt="{{ product.title }}"/>
+
+      <div class="row details-info">
+        <ion-label class="details-category">{{ product.category }}</ion-label>
+        <p class="details-price">{{ product.price | currency }}</p>
+      </div>
+
+      <h3 class="details-subtitle">Descripción</h3>
+      <p class="details-description">{{ product.description }}</p>
+
+      <div class="row details-rating">
+        <h2 class="rating-count">
+          Comprados: {{ product.rating.count }}+
+        </h2>
+        <h2 class="rating-rate">
+          {{ product.rating.rate }}
+          <ion-icon name="star"></ion-icon>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <ion-toast></ion-toast>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button
+      expand="full"
+      color="tertiary"
+      (click)="addShopping()"
+    >Añadir al carrito</ion-button>
+  </ion-toolbar>
+</ion-footer>
